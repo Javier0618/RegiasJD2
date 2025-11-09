@@ -1,0 +1,47 @@
+{
+  "name": "Service",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Nombre del servicio"
+    },
+    "duration_minutes": {
+      "type": "integer",
+      "description": "Duraci\u00f3n en minutos del servicio",
+      "minimum": 5
+    },
+    "price": {
+      "type": "number",
+      "description": "Precio del servicio",
+      "minimum": 0
+    },
+    "category": {
+      "type": "string",
+      "description": "Categor\u00eda del servicio (U\u00f1as, Cabello, Facial, etc.)"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "URL de la imagen del servicio"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Si el servicio est\u00e1 activo y disponible para reservar"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descripci\u00f3n opcional del servicio"
+    },
+    "order": {
+      "type": "integer",
+      "description": "Orden de visualizaci\u00f3n",
+      "default": 0
+    }
+  },
+  "required": [
+    "name",
+    "duration_minutes",
+    "price"
+  ]
+}

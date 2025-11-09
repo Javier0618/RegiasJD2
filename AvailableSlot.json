@@ -1,0 +1,36 @@
+{
+  "name": "AvailableSlot",
+  "type": "object",
+  "properties": {
+    "day_of_week": {
+      "type": "integer",
+      "description": "D\u00eda de la semana (1=Lunes, 2=Martes, ..., 7=Domingo) - para horarios recurrentes",
+      "minimum": 1,
+      "maximum": 7
+    },
+    "specific_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Fecha espec\u00edfica (YYYY-MM-DD) - para horarios no recurrentes"
+    },
+    "time_slot": {
+      "type": "string",
+      "description": "Hora del slot (formato 24h, ej: 14:00)"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Si el slot est\u00e1 activo o no"
+    },
+    "available_services": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Servicios disponibles en este horario. Si est\u00e1 vac\u00edo, todos los servicios est\u00e1n disponibles"
+    }
+  },
+  "required": [
+    "time_slot"
+  ]
+}

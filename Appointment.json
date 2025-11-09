@@ -1,0 +1,92 @@
+{
+  "name": "Appointment",
+  "type": "object",
+  "properties": {
+    "client_name": {
+      "type": "string",
+      "description": "Nombre de la clienta"
+    },
+    "phone": {
+      "type": "string",
+      "description": "N\u00famero de celular"
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Servicios solicitados (m\u00faltiples)"
+    },
+    "total_duration_minutes": {
+      "type": "integer",
+      "description": "Duraci\u00f3n total de todos los servicios en minutos"
+    },
+    "total_price": {
+      "type": "number",
+      "description": "Precio total de todos los servicios"
+    },
+    "appointment_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Fecha de la cita"
+    },
+    "appointment_time": {
+      "type": "string",
+      "description": "Hora de la cita (formato 24h, ej: 14:00)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pendiente",
+        "confirmada",
+        "completada",
+        "cancelada"
+      ],
+      "default": "pendiente",
+      "description": "Estado de la cita"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Notas adicionales"
+    }
+  },
+  "required": [
+    "client_name",
+    "phone",
+    "services",
+    "appointment_date",
+    "appointment_time"
+  ],
+  "rls": {
+    "create": {},
+    "read": {
+      "$or": [
+        {
+          "created_by": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
